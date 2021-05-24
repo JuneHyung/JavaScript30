@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    // start with strings, numbers and booleans
+    // 문자열, 숫자 및 부울로 시작
+
+    // let age = 100;
+    // let age2 = age;
+    // console.log(age, age2);
+    // age = 200;
+    // console.log(age, age2);
+
+    // let name = 'wes';
+    // let name2 = name;
+    // console.log(name, name2);
+    // name = 'wesley';
+    // console.log(name, name2);
+
+    // Let's say we have an array
+    // 배열이 있다고 가정 해 봅시다.
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    // and we want to make a copy of it.
+    // 복사본을 만들고 싶습니다.
+    const team = players;
+
+    console.log(players, team);
+    // You might think we can just do something like this:
+    // 다음과 같이 할 수 있다고 생각할 수도 있습니다.
+    // team[3] = 'Lux';
+
+    // however what happens when we update that array?
+    // 그러나 배열을 업데이트하면 어떻게됩니까?
+
+    // now here is the problem!
+    // 이제 여기에 문제가 있습니다!
+
+    // oh no - we have edited the original array too!
+    // 아뇨-우리는 원래 배열도 편집했습니다!
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+    // 왜? 그것은 배열 복사가 아니라 배열 참조이기 때문입니다. 둘 다 동일한 배열을 가리 킵니다!
+
+    // So, how do we fix this? We take a copy instead!
+    // 그래서 어떻게 고칠까요? 대신 복사합니다!
+    const team2 = players.slice();
+    
+    // one way
+    
+    // or create a new array and concat the old one in
+    // 또는 새 배열을 만들고 이전 배열을
+    const tema3 = [].concat(players);
+    
+    // or use the new ES6 Spread
+    // 또는 새로운 ES6 스프레드 사용
+    const team4 = [...players];
+    team4[3] = 'Heee Haaaa';
+    console.log(team4);
+
+    const team5 = Array.from(players);
+
+    // now when we update it, the original one isn't changed
+    // 이제 업데이트 할 때 원본은 변경되지 않습니다
+
+    // The same thing goes for objects, let's say we have a person object
+    // 객체도 마찬가지입니다. 사람 객체가 있다고 가정 해 보겠습니다.
+
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+    // 사본을 만든다고 생각합니다.
+    // const captain = person;
+    // captain.number = 99;
+
+    // how do we take a copy instead?
+    // 대신 복사하는 방법은 무엇입니까?
+    const capt2 = Object.assign({},person, {number: 99, age: 12});
+    console.log(capt2);
+
+    // We will hopefully soon see the object ...spread
+    // 우리는 곧 그 object를 보게 될 것입니다 ...
+    const capt3 = {...person};
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+    // 주목할 사항-이것은 배열과 객체 모두에 대해 1 레벨에 불과합니다. lodash에는 cloneDeep 메서드가 있지만 사용하기 전에 두 번 생각해야합니다.
+    const wes = {
+        name: 'Wes',
+        age: 100,
+        social:{
+            twitter: '@wesbos',
+            facebook: 'wesbos.developer'
+        }
+    }
+    console.clear();
+    console.log(wes);
+
+    const dev = Object.assign({}, wes);
+
+    const dev2 = JSON.parse(JSON.stringify(wes));
+  </script>
+
+</body>
+</html>
