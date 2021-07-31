@@ -4,7 +4,7 @@
 
 <img src="./readme_images/resultScreen.gif" alt="결과화면"/>
 
-**초기화면**
+**초기 코드**
 
 ```html
 <!DOCTYPE html>
@@ -43,7 +43,7 @@
 
 
 
-**초기코드**
+**초기 화면**
 
 <img src="./readme_images/startScreen.png"/>
 
